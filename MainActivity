@@ -1,0 +1,23 @@
+package com.termux.app
+
+class MainActivity : AppCompatActivity() {
+
+    companion object {
+        init {
+            // โหลดไฟล์ libfoo.so (ระบุเฉพาะชื่อระบบ ไม่ต้องมีคำว่า 'lib' และ '.so')
+            System.loadLibrary("foo")
+        }
+    }
+
+    // ประกาศฟังก์ชันให้ตรงกับ JNI ตัวที่เราเขียนไว้ใน native-lib.cpp
+    external fun stringFromJNI(): String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // เรียกใช้งานฟังก์ชัน C++ จากในแอป Android ได้เลย!
+        val result = stringFromJNI()
+        Log.d("JNI_RESULT", result)
+    }
+}
