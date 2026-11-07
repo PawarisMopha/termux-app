@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package_variant: [ apt-android-7, apt-android-5 ]
+        package_variant: [ apt-android-7 ]
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -19,7 +19,8 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v6
         with:
-          ref: ${{ env.GITHUB_REF }}
+         ref: ${{ env.GITHUB_TOKEN }}
+         
 
       - name: Build and attach APKs to release
         shell: bash {0}
