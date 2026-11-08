@@ -66,6 +66,8 @@ jobs:
           export TERMUX_PACKAGE_VARIANT="${PACKAGE_VARIANT}"
           
           chmod +x gradlew
+          export GRADLE_OPTS="-Dorg.gradle.internal.http.connectionTimeout=120000 -Dorg.gradle.internal.http.socketTimeout=120000"
+
           if ! ./gradlew --no-daemon assembleDebug; then
             exit_on_error "Build failed for '$APK_VERSION_TAG' build."
           fi
