@@ -1,14 +1,13 @@
 name: Trigger Termux Library Builds on Jitpack
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
-    - main
     - mmaster
 
   push:
     branches:
-    - main
     - mmaster 
   
   release:
